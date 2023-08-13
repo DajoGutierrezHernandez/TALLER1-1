@@ -4,14 +4,133 @@ Nombre <input type="text" id="nombre">
 <button onclick="salude()">Saludos</button>
 <h1>Transformacion de traslación</h1>
 <p>VECTOR ORIGINAL</p>
-<p>Coordenada inicial <input id="c_i"></p>
+<p>Coordenada inicial x <input id="c_i"></p>
 <p>Coordenada final <input id="c_f"></p>
 <p>VECTOR TRASLACIÓN</p>
 <p>Coordenada traslación <input id="c_t"></p>
+<button onclick="traslacion()">Traslación</button>
+<p>VECTOR ESCALA</p>
+<p>Escalado en x <input id="Ex"></p>
+<p>Escalado en y <input id="Ey"></p>
+<p>Escalado en z <input id="Ez"></p>
+<button onclick="escalado()">Escala</button>
+<p>VECTOR ROTACION</p>
+<p>Grados a rotar <input id="Gr"></p>
+<button onclick="rotaciónx()">Rotacionx</button>
+<button onclick="rotacióny()">Rotaciony</button>
+<button onclick="rotaciónz()">Rotacionz</button>
+
+
+
+
 <script>
 function salude(){
 const name= document.getElementById('nombre').value
 alert("Hola "+ name +", Buenas Tardes");
 }
+function traslacion(){
+let arreglodatos = document.getElementById('c_i').value.split(',').map(parseFloat);
+let arreglodatos1 = document.getElementById('c_f').value.split(',').map(parseFloat);
+let arreglodatos2 = document.getElementById('c_t').value.split(',').map(parseFloat);
+const x1=arreglodatos[0];
+const y1=arreglodatos[1];
+const z1=arreglodatos[2];
+const x2=arreglodatos1[0];
+const y2=arreglodatos1[1];
+const z2=arreglodatos1[2];
+const tx=arreglodatos2[0];
+const ty=arreglodatos2[1];
+const tz=arreglodatos2[2];
+
+const nx1= x1+tx;
+const ny1= y1+ty;
+const nz1= z1+tz;
+const nx2= x2+tx;
+const ny2= y2+ty;
+const nz2= z2+tz;
+
+
+alert("El nuevo vector queda: "+nx2+","+ny2+","+nz2+". Con origen en: "+nx1+","+ny1+","+nz1);
+}
+function escalado(){
+let arreglodatos = document.getElementById('c_i').value.split(',').map(parseFloat);
+let arreglodatos1 = document.getElementById('c_f').value.split(',').map(parseFloat);
+const x1=arreglodatos[0];
+const y1=arreglodatos[1];
+const z1=arreglodatos[2];
+const x2=arreglodatos1[0];
+const y2=arreglodatos1[1];
+const z2=arreglodatos1[2];
+const escaladox = document.getElementById('Ex').value;
+const escaladoy = document.getElementById('Ey').value;
+const escaladoz = document.getElementById('Ez').value;
+
+const nx2 = x2*escaladox;
+const ny2 = y2*escaladoy;
+const nz2 = z2*escaladoz;
+const nx1 = x1*escaladox;
+const ny1 = y1*escaladoy;
+const nz1 = z1*escaladoz;
+
+alert("El nuevo vector queda: "+nx2+","+ny2+","+nz2+". Con origen en: "+nx1+","+ny1+","+nz1);
+}
+function rotaciónx(){
+let arreglodatos = document.getElementById('c_i').value.split(',').map(parseFloat);
+let arreglodatos1 = document.getElementById('c_f').value.split(',').map(parseFloat);
+const x1=arreglodatos[0];
+const y1=arreglodatos[1];
+const z1=arreglodatos[2];
+const x2=arreglodatos1[0];
+const y2=arreglodatos1[1];
+const z2=arreglodatos1[2];
+const grados= document.getElementById('Gr').value;
+const radianes=((grados)*(Math.PI/180));
+
+const ny2= ((y2*Math.cos(radianes))-(z2*Math.sin(radianes)));
+const nz2= ((z2*Math.cos(radianes))+(y2*Math.sin(radianes)));
+const ny1= ((y1*Math.cos(radianes))-(z1*Math.sin(radianes)));
+const nz1= ((z1*Math.cos(radianes))+(y1*Math.sin(radianes)));
+
+alert("El nuevo vector queda: "+x2+","+ny2+","+nz2+". Con origen en: "+x1+","+ny1+","+nz1);
+}
+function rotacióny(){
+let arreglodatos = document.getElementById('c_i').value.split(',').map(parseFloat);
+let arreglodatos1 = document.getElementById('c_f').value.split(',').map(parseFloat);
+const x1=arreglodatos[0];
+const y1=arreglodatos[1];
+const z1=arreglodatos[2];
+const x2=arreglodatos1[0];
+const y2=arreglodatos1[1];
+const z2=arreglodatos1[2];
+const grados= document.getElementById('Gr').value;
+const radianes=((grados)*(Math.PI/180));
+
+const nx2= ((x2*Math.cos(radianes))+(z2*Math.sin(radianes)));
+const nz2= ((z2*Math.cos(radianes))-(x2*Math.sin(radianes)));
+const nx1= ((x1*Math.cos(radianes))+(z1*Math.sin(radianes)));
+const nz1= ((z1*Math.cos(radianes))-(x1*Math.sin(radianes)));
+
+alert("El nuevo vector queda: "+nx2+","+y2+","+nz2+". Con origen en: "+nx1+","+y1+","+nz1);
+}
+function rotaciónz(){
+let arreglodatos = document.getElementById('c_i').value.split(',').map(parseFloat);
+let arreglodatos1 = document.getElementById('c_f').value.split(',').map(parseFloat);
+const x1=arreglodatos[0];
+const y1=arreglodatos[1];
+const z1=arreglodatos[2];
+const x2=arreglodatos1[0];
+const y2=arreglodatos1[1];
+const z2=arreglodatos1[2];
+const grados= document.getElementById('Gr').value;
+const radianes=((grados)*(Math.PI/180));
+
+const nx2= ((x2*Math.cos(radianes))+(y2*Math.sin(radianes)));
+const ny2= ((y2*Math.cos(radianes))-(x2*Math.sin(radianes)));
+const nx1= ((x1*Math.cos(radianes))+(y1*Math.sin(radianes)));
+const ny1= ((y1*Math.cos(radianes))-(x1*Math.sin(radianes)));
+
+alert("El nuevo vector queda: "+nx2+","+ny2+","+z2+". Con origen en: "+nx1+","+ny1+","+z1);
+}
 </script>
+
 </html>
